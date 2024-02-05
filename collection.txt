@@ -1,0 +1,30 @@
+Data structure
+--linear 
+--non linear
+Algorithms time complexity
+big O it is worstcase 
+theta it is specific
+omega least time case
+
+Algorithms
+-Bruteforce
+-searching
+-divide and conquer
+-Recursion 
+-dp
+-backtracking 
+-hashing
+-Randomized
+------------------------------------------
+if two for loops are there then the greatest will be considered as worst case 
+------------------------------------------
+data strucute is a type of storing data in structured way to make crud operations
+linear : data is stored continous in the memory ex array,linkedlist,stack,queue
+
+nonlinear : trees,graph,trie,bitmap
+ greedy is optimal approach
+recursion  print n number
+backtracking n qeen
+dp fibanacci series
+divide and conquer merge and binart search
+
