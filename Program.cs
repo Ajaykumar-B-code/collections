@@ -10,37 +10,98 @@ namespace collections
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        class Node
         {
-            Queue myQ = new Queue();    // Creating a Queue
+            public int Data;
+            public Node Next;
 
-            myQ.Enqueue("1");      // Enqueue elements
-            myQ.Enqueue("2");
-            myQ.Enqueue("3");
-
-            DisplayQueue(myQ);            // Displaying the elements in the Queue
-
-            Console.WriteLine("Front element: " + myQ.Peek());   // Peek at the front element
-
-            while (myQ.Count > 0)    // Dequeue elements
+            public Node(int data)
             {
-                Console.WriteLine("Dequeue: " + myQ.Dequeue());
+                Data = data;
+                Next = null;
+            }
+        }
+        static Node AddNumber(Node head, int number)
+        {
+            Node newNode = new Node(number);
+
+            if (head == null)
+            {
+                head = newNode;
+            }
+            else
+            {
+                Node current = head;
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = newNode;
             }
 
-           
-            Console.WriteLine("Is the Queue empty? " + (myQ.Count == 0));    // Check if the Queue is empty
+            return head;
         }
 
-        static void DisplayQueue(Queue queue)
+        static bool LinearSearch(Node head, int searchNumber)
         {
-            Console.WriteLine("Elements in the Queue:");
-            foreach (var item in queue)
+            Node current = head;
+            while (current != null)
             {
-                Console.WriteLine(item);
+                if (current.Data == searchNumber)
+                {
+                    return true;
+                }
+                current = current.Next;
             }
-            Console.WriteLine();
+            return false;
+        }
+
+        static void Main(string[] args)
+        {
+            Node numbers = null;
+
+            Console.WriteLine("Enter numbers (enter -1 to stop):");
+
+
+            while (true)
+            {
+                Console.Write("Enter a number: ");
+                string input = Console.ReadLine();
+
+                if (input == "-1")
+                    break;
+
+                if (int.TryParse(input, out int number))
+                {
+                    numbers = AddNumber(numbers, number);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid integer.");
+                }
+            }
+
+            Console.WriteLine("\nEnter the number to search:");
+            int searchNumber;
+            while (!int.TryParse(Console.ReadLine(), out searchNumber))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid integer to search:");
+            }
+
+
+            bool found = LinearSearch(numbers, searchNumber);
+
+
+            if (found)
+            {
+                Console.WriteLine($"The number {searchNumber} is found in the list.");
+            }
+            else
+            {
+                Console.WriteLine($"The number {searchNumber} is not found in the list.");
+            }
             Console.ReadLine();
         }
     }
-    
+
 }
