@@ -12,37 +12,35 @@ namespace collections
     {
         public static void Main(string[] args)
         {
-            Stack st = new Stack();          // Creating a Stack
+            Queue myQ = new Queue();    // Creating a Queue
 
-            st.Push(1);            // Push elements onto the Stack
-            st.Push(2);
-            st.Push(3);
+            myQ.Enqueue("1");      // Enqueue elements
+            myQ.Enqueue("2");
+            myQ.Enqueue("3");
 
-            Display(st);                     // Displaying the elements in the 
+            DisplayQueue(myQ);            // Displaying the elements in the Queue
 
-            Console.WriteLine("Top element: " + st.Peek());  // Peek at the top element
+            Console.WriteLine("Front element: " + myQ.Peek());   // Peek at the front element
 
-            Console.WriteLine("After removeing the single element");
-            st.Pop();                         //to pop the single element from the top
-            Display(st);
-            while (st.Count > 0)              // Pop all the elements
+            while (myQ.Count > 0)    // Dequeue elements
             {
-                Console.WriteLine("Pop: " + st.Pop());
+                Console.WriteLine("Dequeue: " + myQ.Dequeue());
             }
 
-            Console.WriteLine("Is the Stack empty? " + (st.Count == 0));  // Check if the Stack is empty
+           
+            Console.WriteLine("Is the Queue empty? " + (myQ.Count == 0));    // Check if the Queue is empty
         }
 
-        static void Display(Stack stack)
+        static void DisplayQueue(Queue queue)
         {
-            Console.WriteLine("Elements in the Stack:");
-            foreach (var item in stack)
+            Console.WriteLine("Elements in the Queue:");
+            foreach (var item in queue)
             {
                 Console.WriteLine(item);
             }
             Console.WriteLine();
             Console.ReadLine();
         }
-        
     }
+    
 }
