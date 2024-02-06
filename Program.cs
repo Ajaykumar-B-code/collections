@@ -10,98 +10,47 @@ namespace collections
 {
     internal class Program
     {
-        class Node
+        public static void Main(string[] args)
         {
-            public int Data;
-            public Node Next;
+            
+            HashSet<int> myHs = new HashSet<int>();   // Creating a HashSet
 
-            public Node(int data)
-            {
-                Data = data;
-                Next = null;
-            }
-        }
-        static Node AddNumber(Node head, int number)
-        {
-            Node newNode = new Node(number);
+            
+            myHs.Add(1);                   // Adding elements to the HashSet
+            myHs.Add(2);
+            myHs.Add(3);
 
-            if (head == null)
-            {
-                head = newNode;
-            }
-            else
-            {
-                Node current = head;
-                while (current.Next != null)
-                {
-                    current = current.Next;
-                }
-                current.Next = newNode;
-            }
+         
+            DisplayHashSet(myHs);                 // Displaying the elements in the HashSet
 
-            return head;
+           
+            int searchElement =1;               // Checking if an element is present
+            Console.WriteLine($"Is {searchElement} present in the HashSet? {myHs.Contains(searchElement)}");
+
+           
+            myHs.Remove(3);     // Removing an element
+
+            Console.WriteLine("\nHashSet after removing element 2:");   // Displaying the updated HashSet
+
+            DisplayHashSet(myHs);
+
+            myHs.Clear();      // Clearing the HashSet
+
+           
+            Console.WriteLine("\nIs the HashSet empty? " + (myHs.Count == 0));  // Checking if the HashSet is empty
         }
 
-        static bool LinearSearch(Node head, int searchNumber)
+        static void DisplayHashSet(HashSet<int> hashSet)
         {
-            Node current = head;
-            while (current != null)
+            Console.WriteLine("Elements in the HashSet:");
+            foreach (var item in hashSet)
             {
-                if (current.Data == searchNumber)
-                {
-                    return true;
-                }
-                current = current.Next;
+                Console.Write(item + " ");
             }
-            return false;
-        }
-
-        static void Main(string[] args)
-        {
-            Node numbers = null;
-
-            Console.WriteLine("Enter numbers (enter -1 to stop):");
-
-
-            while (true)
-            {
-                Console.Write("Enter a number: ");
-                string input = Console.ReadLine();
-
-                if (input == "-1")
-                    break;
-
-                if (int.TryParse(input, out int number))
-                {
-                    numbers = AddNumber(numbers, number);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid integer.");
-                }
-            }
-
-            Console.WriteLine("\nEnter the number to search:");
-            int searchNumber;
-            while (!int.TryParse(Console.ReadLine(), out searchNumber))
-            {
-                Console.WriteLine("Invalid input. Please enter a valid integer to search:");
-            }
-
-
-            bool found = LinearSearch(numbers, searchNumber);
-
-
-            if (found)
-            {
-                Console.WriteLine($"The number {searchNumber} is found in the list.");
-            }
-            else
-            {
-                Console.WriteLine($"The number {searchNumber} is not found in the list.");
-            }
+            Console.WriteLine();
             Console.ReadLine();
         }
     }
+ }
 
-}
+
